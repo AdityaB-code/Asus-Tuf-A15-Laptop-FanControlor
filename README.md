@@ -2,7 +2,19 @@
 
 Asus Tuf A15 Gaming Laptop fan speed control.
 
+Step 1 : 
 
+Install yay
+   You previously used this command to install `yay`:
+
+```bash
+git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
+
+This is the standard and correct way to install `yay` from the AUR.
+
+
+Step 2 : 
 
 Here are all the things you installed using `yay`:
 
