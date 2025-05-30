@@ -16,18 +16,42 @@ This installs tools needed for building AUR packages.
 
 ---
 
-## ✅ Step 2: Install an AUR Helper (Recommended)
+Certainly! Here's **Step 2** written out with **separate commands** for clarity:
 
-We'll use `paru`, a popular AUR helper.
+---
 
-### Install `paru`:
+### ✅ Step 2: Install an AUR Helper (Recommended)
+
+We'll install `paru`, a popular and user-friendly AUR helper.
+
+#### 1. Clone the `paru` repository from AUR:
 
 ```bash
 git clone https://aur.archlinux.org/paru.git
+```
+
+#### 2. Move into the `paru` directory:
+
+```bash
 cd paru
+```
+
+#### 3. Build and install `paru` using `makepkg`:
+
+```bash
 makepkg -si
 ```
 
+- This command will:
+  - Install any missing dependencies.
+  - Build the `paru` package.
+  - Install it on your system.
+
+---
+
+You can now proceed to **Step 3** to install `rog-control-center`.
+
+Let me know if you want each step broken down like this again!
 ---
 
 ## ✅ Step 3: Install `rog-control-center`
