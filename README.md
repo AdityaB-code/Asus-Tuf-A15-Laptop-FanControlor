@@ -1,100 +1,112 @@
 # Asus-Tuf-A15-Laptop-FanControlor
 
-Asus Tuf A15 Gaming Laptop fan speed control.
-
-Step 1 : 
-
-Install yay
-   You previously used this command to install `yay`:
-
-```bash
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-```
-
-This is the standard and correct way to install `yay` from the AUR.
-
-
-Step 2 : 
-
-Here are all the things you installed using `yay`:
+Here's a **step-by-step guide** to install **ROG Control Center** (which includes `asusctl` and the GUI) on **Arch Linux or Arch-based distros like Manjaro or EndeavourOS**.
 
 ---
 
-### ✅ Installed via `yay`:
+## ✅ Step 1: Install Git and Base Development Tools
 
-1. **`asusctl`** – For ASUS laptop control (fan curves, profiles, aura, etc.)
+Open a terminal and run:
 
-   ```bash
-   yay -S asusctl
-   ```
+```bash
+sudo pacman -S --needed git base-devel
+```
 
-2. **(Implicit)** `supergfxctl` – Installed as a dependency or separately for GPU switching support
-
-   ```bash
-   yay -S supergfxctl
-   ```
+This installs tools needed for building AUR packages.
 
 ---
 
-If you want to verify what you've installed via `yay`, you can run:
+## ✅ Step 2: Install an AUR Helper (Recommended)
+
+We'll use `paru`, a popular AUR helper.
+
+### Install `paru`:
 
 ```bash
-pacman -Qem
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 ```
-
-This lists all **AUR packages** (explicitly installed using `yay` or similar).
-
-Let me know if you want to export or clean up that list.
-
-
-After installing `asusctl` and `supergfxctl` via `yay`, here’s what we did next:
 
 ---
 
-### 🔧 Steps after installation:
+## ✅ Step 3: Install `rog-control-center`
 
-1. **Enabled and started the `supergfxd` service:**
-
-```bash
-sudo systemctl enable --now supergfxd
-```
-
-2. **Checked if `asusctl` is installed and working:**
+Now install the package using `paru`:
 
 ```bash
-which asusctl
-asusctl --version
+paru -S rog-control-center
 ```
 
-3. **Explored `asusctl` fan control commands and options:**
+- This will automatically install `asusctl` as a dependency.
+- It builds and installs both the CLI (`asusctl`) and GUI (`rog-control-center`).
+
+---
+
+## ✅ Step 4: Start and Enable the Service
+
+After installation, start the service:
 
 ```bash
-asusctl fan-curve --help
+sudo systemctl start asusd.service
+sudo systemctl enable asusd.service
 ```
 
-4. **Installed `lm_sensors` to read hardware temperatures:**
+This enables ASUS ROG functionality on boot.
+
+---
+
+## ✅ Step 5: Reboot (Recommended)
+
+Some kernel modules and services need a reboot to work properly:
 
 ```bash
-sudo pacman -S lm_sensors
-sudo sensors-detect   # then accepted defaults
+sudo reboot
 ```
 
-5. **Checked CPU and GPU temperatures:**
+---
+
+## ✅ Step 6: Launch ROG Control Center
+
+Once your system restarts, open the application:
+
+### From GUI:
+- Open your app menu and search for **"ROG Control Center"**.
+- Click to launch it.
+
+### From Terminal:
+```bash
+rog-control-center
+```
+
+---
+
+## 🔧 Optional: Check Kernel Module Support
+
+If some features don't work (like fan control), you may need a patched kernel. You can install a custom kernel made for ASUS laptops:
 
 ```bash
-sensors
-nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader
+paru -S linux-asus
 ```
 
-6. **Created and set a custom fan curve to control fan speed (targeting \~4500 RPM):**
+Then select this kernel at boot using your bootloader (GRUB or systemd-boot).
+
+---
+
+## 🧪 Verify Installation
+
+Run this command in terminal:
 
 ```bash
-sudo asusctl fan-curve --mod-profile performance --fan cpu --data "30c:235,40c:235,50c:235,60c:235,70c:235,80c:235,90c:235,100c:235"
-sudo asusctl fan-curve --mod-profile performance --enable-fan-curves true
-sudo asusctl profile performance
+asusctl profile
 ```
 
-7. **Wrote a Bash script to monitor CPU and GPU temperatures easily.**
+You should see current mode (e.g., Performance, Balanced, Silent) — confirms `asusctl` is working.
+
+---
+
+✅ That’s it! You’ve successfully installed **ROG Control Center** and `asusctl`.
+
 
 ---
 
