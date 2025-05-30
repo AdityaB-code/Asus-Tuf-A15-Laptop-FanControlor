@@ -134,5 +134,3 @@ You should see current mode (e.g., Performance, Balanced, Silent) — confirms `
 
 ---
 
-Want me to help with next steps?
-
