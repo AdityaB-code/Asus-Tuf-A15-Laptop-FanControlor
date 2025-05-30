@@ -127,10 +127,21 @@ asusctl profile
 
 You should see current mode (e.g., Performance, Balanced, Silent) — confirms `asusctl` is working.
 
+
 ---
 
 ✅ That’s it! You’ve successfully installed **ROG Control Center** and `asusctl`.
 
 
 ---
+
+
+
+
+# BothTempAndRPMCheck
+Directly execute this file to check what is your CPU GPU and CPU fan's RPM GPU fan's RPM.
+
+```bash
+./BothTempAndRPMCheck.sh  
+```
 
